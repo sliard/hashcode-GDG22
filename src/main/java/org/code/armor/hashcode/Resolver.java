@@ -160,7 +160,9 @@ public abstract class Resolver {
                     carStartStep = course.startStep;
                 }
                 carStartStep += course.getDistance();
-                totalScore += course.getDistance();;
+                if(carStartStep < course.stopStep) {
+                    totalScore += course.getDistance();;
+                }
                 carPosition = course.stopPos;
             }
         }
