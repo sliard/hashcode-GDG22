@@ -98,5 +98,14 @@ public class Resolver {
 
     public void run() {
 
+        for(Step step : steps) {
+            for(Car car : cars) {
+                if(car.currentCourse == null) {
+                    //
+                } else if(car.availableStep == step.id) {
+                    // calcule score
+                }
+            }
+        }
     }
 }
