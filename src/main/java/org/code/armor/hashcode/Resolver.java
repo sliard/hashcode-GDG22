@@ -1,8 +1,9 @@
 package org.code.armor.hashcode;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import sun.misc.ClassLoaderUtil;
+
+import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,11 +19,15 @@ public class Resolver {
     public int nbStep;
 
     public List<Course> allCourses;
-    
+
     public List<Car> cars;
 
     public Resolver(String fileName) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
+
+        InputStream is = Resolver.class.getResourceAsStream(fileName);
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+
+//        BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line;
 
         /**
@@ -43,12 +48,16 @@ public class Resolver {
             throw new IOException("bad first line");
         }
         grid = new Grid();
-        grid.rows = Integer.getInteger(elems[0]);
-        grid.columns = Integer.getInteger(elems[1]);
+        grid.rows = Integer.parseInt(elems[0]);
+        grid.columns = Integer.parseInt(elems[1]);
 
+        nbCar = Integer.parseInt(elems[2]);
+        nbRides = Integer.parseInt(elems[3]);
+        onTimeBonus = Integer.parseInt(elems[4]);
+        nbStep = Integer.parseInt(elems[5]);
         nbCar = Integer.getInteger(elems[2]);
         cars = IntStream.of(nbCar).mapToObj(Car::new).collect(Collectors.toList());
-        
+
         nbRides = Integer.getInteger(elems[3]);
         onTimeBonus = Integer.getInteger(elems[4]);
         nbStep = Integer.getInteger(elems[6]);
@@ -75,6 +84,12 @@ public class Resolver {
             c.stopPos.x = Integer.getInteger(elems2[3]);
             c.startStep = Integer.getInteger(elems2[4]);
             c.stopStep = Integer.getInteger(elems2[5]);
+            c.startPos.x = Integer.parseInt(elems2[0]);
+            c.startPos.y = Integer.parseInt(elems2[1]);
+            c.stopPos.x = Integer.parseInt(elems2[2]);
+            c.stopPos.x = Integer.parseInt(elems2[3]);
+            c.startStep = Integer.parseInt(elems2[4]);
+            c.stopStep = Integer.parseInt(elems2[5]);
             allCourses.add(c);
         }
         br.close();
