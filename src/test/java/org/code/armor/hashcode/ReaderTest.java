@@ -51,5 +51,30 @@ public class ReaderTest {
         assertEquals(200000, r.nbStep);
     }
 
+    @Test
+    public void testReadD() throws Exception {
+        // 10000 10000 400 10000 2 50000
+        Resolver r = resolverClass.newInstance();
+        r.readFile("/d_metropolis.in");
+        assertEquals(10000, r.grid.rows);
+        assertEquals(10000, r.grid.columns);
+        assertEquals(400, r.nbCar);
+        assertEquals(10000, r.nbRides);
+        assertEquals(2, r.onTimeBonus);
+        assertEquals(50000, r.nbStep);
+    }
+
+    @Test
+    public void testReadE() throws Exception {
+        // 1500 2000 350 10000 1000 150000
+        Resolver r = resolverClass.newInstance();
+        r.readFile("/e_high_bonus.in");
+        assertEquals(1500, r.grid.rows);
+        assertEquals(2000, r.grid.columns);
+        assertEquals(350, r.nbCar);
+        assertEquals(10000, r.nbRides);
+        assertEquals(1000, r.onTimeBonus);
+        assertEquals(150000, r.nbStep);
+    }
 
 }
