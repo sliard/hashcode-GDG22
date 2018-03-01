@@ -116,9 +116,11 @@ public abstract class Resolver {
 
                 if(car.currentCourse == null) {
                     Course c = getCourse(car, step);
-                    c.took = true;
-                    car.currentCourse = c;
-                    car.availableStep = step.id + c.getDistance();
+                    if(c != null) {
+                        c.took = true;
+                        car.currentCourse = c;
+                        car.availableStep = step.id + c.getDistance();
+                    }
                 }
             }
         }
