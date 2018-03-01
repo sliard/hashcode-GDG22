@@ -55,12 +55,8 @@ public class Resolver {
         nbRides = Integer.parseInt(elems[3]);
         onTimeBonus = Integer.parseInt(elems[4]);
         nbStep = Integer.parseInt(elems[5]);
-        nbCar = Integer.getInteger(elems[2]);
-        cars = IntStream.of(nbCar).mapToObj(Car::new).collect(Collectors.toList());
 
-        nbRides = Integer.getInteger(elems[3]);
-        onTimeBonus = Integer.getInteger(elems[4]);
-        nbStep = Integer.getInteger(elems[6]);
+        cars = IntStream.of(nbCar).mapToObj(Car::new).collect(Collectors.toList());
 
         /**
          * a – the row of the start intersection (0 ≤ a < R)
@@ -78,12 +74,6 @@ public class Resolver {
             Course c = new Course();
             String[] elems2 = line.split(" ");
             c.id = i++;
-            c.startPos.x = Integer.getInteger(elems2[0]);
-            c.startPos.y = Integer.getInteger(elems2[1]);
-            c.stopPos.x = Integer.getInteger(elems2[2]);
-            c.stopPos.x = Integer.getInteger(elems2[3]);
-            c.startStep = Integer.getInteger(elems2[4]);
-            c.stopStep = Integer.getInteger(elems2[5]);
             c.startPos.x = Integer.parseInt(elems2[0]);
             c.startPos.y = Integer.parseInt(elems2[1]);
             c.stopPos.x = Integer.parseInt(elems2[2]);
