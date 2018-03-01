@@ -10,7 +10,7 @@ public class Car {
 	public Position currentPosition = new Position();
 	
 	public List<Course> courses = new ArrayList<>();
-	
+	public Course currentCourse;
 	public int availableStep;
 
 	public Car(int id) {
