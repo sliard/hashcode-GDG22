@@ -160,18 +160,8 @@ public abstract class Resolver {
                 line += course.id+" ";
             }
             writer.println(line);
-        }
-        writer.close();
-    }
-
-    public void printSolution() throws FileNotFoundException, UnsupportedEncodingException {
-        for(Car car : cars) {
-            String line = car.courses.size()+" ";
-
-            for (Course course : car.courses) {
-                line += course.id+" ";
-            }
             System.out.println(line);
         }
+        writer.close();
     }
 }
