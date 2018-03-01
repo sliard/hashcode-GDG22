@@ -6,6 +6,11 @@ public class Course {
 	public Position stopPos;
 	public int startStep;
 	public int stopStep;
+
+	public Course() {
+		startPos = new Position();
+		stopPos = new Position();
+	}
 	
 	public int getDistance() {
 		return startPos.getDistance(stopPos);

@@ -3,6 +3,8 @@ package org.code.armor.hashcode;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Resolver {
 
@@ -12,6 +14,8 @@ public class Resolver {
 
     public int onTimeBonus;
     public int nbStep;
+
+    public List<Course> allCourses;
 
     public Resolver(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -43,8 +47,27 @@ public class Resolver {
         onTimeBonus = Integer.getInteger(elems[4]);
         nbStep = Integer.getInteger(elems[6]);
 
+        /**
+         * a – the row of the start intersection (0 ≤ a < R)
+         * b – the column of the start intersection (0 ≤ b < C )
+         * x – the row of the finish intersection (0 ≤ x < R)
+         * y – the column of the finish intersection (0 ≤ y < C )
+         * s – the earliest start(0≤s<T)
+         * f – the latest finish(0≤f ≤T), (f ≥s+|x−a|+|y−b|)
+         */
+
+        allCourses = new ArrayList<>();
+
         while ((line = br.readLine()) != null) {
-            System.out.println(line);
+            Course c = new Course();
+            String[] elems2 = line.split(" ");
+            c.startPos.x = Integer.getInteger(elems2[0]);
+            c.startPos.y = Integer.getInteger(elems2[1]);
+            c.stopPos.x = Integer.getInteger(elems2[2]);
+            c.stopPos.x = Integer.getInteger(elems2[3]);
+            c.startStep = Integer.getInteger(elems2[4]);
+            c.stopStep = Integer.getInteger(elems2[5]);
+            allCourses.add(c);
         }
 
     }
