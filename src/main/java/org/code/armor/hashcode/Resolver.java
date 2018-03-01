@@ -146,4 +146,15 @@ public abstract class Resolver {
         }
         writer.close();
     }
+
+    public void printSolution() throws FileNotFoundException, UnsupportedEncodingException {
+        for(Car car : cars) {
+            String line = car.id+" ";
+
+            for (Course course : car.courses) {
+                line += course.id+" ";
+            }
+            System.out.println(line);
+        }
+    }
 }
