@@ -9,9 +9,9 @@ public class Car {
 	
 	public Position currentPosition = new Position();
 	
-	
 	public List<Course> courses = new ArrayList<>();
-
+	
+	public int availableStep;
 
 	public Car(int id) {
 		this.id = id;

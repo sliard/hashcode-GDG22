@@ -22,6 +22,9 @@ public class Resolver {
 
     public List<Car> cars;
 
+    public List<Step> steps;
+    
+    
     public Resolver(String fileName) throws IOException {
 
         InputStream is = Resolver.class.getResourceAsStream(fileName);
@@ -81,6 +84,14 @@ public class Resolver {
             allCourses.add(c);
         }
         br.close();
+        
+        steps = IntStream.of(nbStep).mapToObj(Step::new).collect(Collectors.toList());
+        
+        for (Course course : allCourses) {
+        	steps.get(course.startStep).activeCourses.add(course);
+        	IntStream.range(course.startStep, course.stopStep - course.getDistance())
+        		.forEach(j-> steps.get(j).activeCourses.add(course));
+        };
 
     }
 
