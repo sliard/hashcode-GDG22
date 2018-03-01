@@ -151,7 +151,7 @@ public abstract class Resolver {
 
     public void writeSolution() throws FileNotFoundException, UnsupportedEncodingException {
         String date = new SimpleDateFormat("hh-mm-ss").format(new Date());
-        PrintWriter writer = new PrintWriter("."+this.fileName+"-solve-"+date+".txt", "UTF-8");
+        PrintWriter writer = new PrintWriter("."+this.fileName+"-"+this.getClass().getSimpleName()+"-"+date+".txt", "UTF-8");
 
         for(Car car : cars) {
             String line = car.courses.size()+" ";
