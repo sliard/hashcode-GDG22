@@ -93,7 +93,7 @@ public abstract class Resolver {
         br.close();
 
         steps = IntStream.of(nbStep).mapToObj(Step::new).collect(Collectors.toList());
-
+       
         for (Course course : allCourses) {
         	steps.get(course.startStep).activeCourses.add(course);
         	IntStream.range(course.startStep, course.stopStep - course.getDistance())

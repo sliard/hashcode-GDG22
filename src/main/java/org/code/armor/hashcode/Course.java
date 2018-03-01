@@ -8,6 +8,8 @@ public class Course {
 	public int startStep;
 	public int stopStep;
 
+	public boolean took;
+	
 	public Course() {
 		startPos = new Position();
 		stopPos = new Position();
