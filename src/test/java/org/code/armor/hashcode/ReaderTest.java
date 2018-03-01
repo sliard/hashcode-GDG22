@@ -10,7 +10,8 @@ public class ReaderTest {
     @Test
 	public void testReadA() throws IOException {
         // 3 4 2 3 2 10
-        Resolver r = new Resolver("/a_example.in");
+        Resolver r = new NoResolver();
+        r.readFile("/a_example.in");
         assertEquals(3, r.grid.rows);
         assertEquals(4, r.grid.columns);
         assertEquals(2, r.nbCar);
@@ -22,7 +23,8 @@ public class ReaderTest {
     @Test
     public void testReadB() throws IOException {
         // 800 1000 100 300 25 25000
-        Resolver r = new Resolver("/b_should_be_easy.in");
+        Resolver r = new NoResolver();
+        r.readFile("/b_should_be_easy.in");
         assertEquals(800, r.grid.rows);
         assertEquals(1000, r.grid.columns);
         assertEquals(100, r.nbCar);
@@ -34,7 +36,8 @@ public class ReaderTest {
     @Test
     public void testReadC() throws IOException {
         // 3000 2000 81 10000 1 200000
-        Resolver r = new Resolver("/c_no_hurry.in");
+        Resolver r = new NoResolver();
+        r.readFile("/c_no_hurry.in");
         assertEquals(3000, r.grid.rows);
         assertEquals(2000, r.grid.columns);
         assertEquals(81, r.nbCar);
