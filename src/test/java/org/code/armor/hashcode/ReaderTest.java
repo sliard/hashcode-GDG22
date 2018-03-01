@@ -6,11 +6,16 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 
 public class ReaderTest {
+	
+	//private Class<? extends Resolver> resolverClass = NoResolver.class;
+
+	private Class<? extends Resolver> resolverClass = NicoResolver.class;
+	
 
     @Test
-	public void testReadA() throws IOException {
+	public void testReadA() throws Exception {
         // 3 4 2 3 2 10
-        Resolver r = new NoResolver();
+        Resolver r = resolverClass.newInstance();
         r.readFile("/a_example.in");
         assertEquals(3, r.grid.rows);
         assertEquals(4, r.grid.columns);
@@ -21,9 +26,9 @@ public class ReaderTest {
 	}
 
     @Test
-    public void testReadB() throws IOException {
+    public void testReadB() throws Exception {
         // 800 1000 100 300 25 25000
-        Resolver r = new NoResolver();
+        Resolver r = resolverClass.newInstance();
         r.readFile("/b_should_be_easy.in");
         assertEquals(800, r.grid.rows);
         assertEquals(1000, r.grid.columns);
@@ -34,9 +39,9 @@ public class ReaderTest {
     }
 
     @Test
-    public void testReadC() throws IOException {
+    public void testReadC() throws Exception {
         // 3000 2000 81 10000 1 200000
-        Resolver r = new NoResolver();
+        Resolver r = resolverClass.newInstance();
         r.readFile("/c_no_hurry.in");
         assertEquals(3000, r.grid.rows);
         assertEquals(2000, r.grid.columns);
