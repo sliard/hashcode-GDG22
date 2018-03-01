@@ -8,7 +8,9 @@ import static org.junit.Assert.assertEquals;
 
 public class WriteTest {
 
-    private Class<? extends Resolver> resolverClass = StupidResolver.class;
+
+    private Class<? extends Resolver> resolverClass = NicoResolver.class;
+
 //    private Class<? extends Resolver> resolverClass = NicoResolver.class;
 
     @Test

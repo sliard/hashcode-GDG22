@@ -95,7 +95,7 @@ public abstract class Resolver {
             c.stopStep = Integer.parseInt(elems2[5]);
             int end = c.stopStep - c.getDistance();
             if (end < c.startStep)
-            	logger.warn("Unable to create step" + c.id);
+            	logger.warn("Unable to create step " + c.id);
             else
             	allCourses.add(c);
         }
@@ -106,10 +106,8 @@ public abstract class Resolver {
         
        
         for (Course course : allCourses) {
-
-            logger.info("Created course" + course.id);
         	steps.get(course.startStep).activeCourses.add(course);
-        	int end = Math.min(course.stopStep - course.getDistance(), 100);
+        	int end = Math.min(course.stopStep - course.getDistance(), 300);
         	IntStream.range(course.startStep, end)
         		.forEach(j-> steps.get(j).activeCourses.add(course));
         };
