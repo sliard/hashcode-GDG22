@@ -28,6 +28,9 @@ public abstract class Resolver {
 
     public List<Step> steps;
 
+    public Resolver() {
+
+    }
 
     public Resolver(String fileName) throws IOException {
         this.fileName = fileName;
