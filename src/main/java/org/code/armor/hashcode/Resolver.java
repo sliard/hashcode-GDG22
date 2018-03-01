@@ -113,6 +113,7 @@ public abstract class Resolver {
             for(Car car : cars) {
                 if(car.currentCourse != null && car.availableStep == step.id) {
                     car.currentPosition = car.currentCourse.stopPos;
+                    car.courses.add(car.currentCourse);
                     car.currentCourse = null;
                 }
 
@@ -137,7 +138,7 @@ public abstract class Resolver {
         PrintWriter writer = new PrintWriter("."+this.fileName+"-solve-"+date+".txt", "UTF-8");
 
         for(Car car : cars) {
-            String line = car.id+" ";
+            String line = car.courses.size()+" ";
 
             for (Course course : car.courses) {
                 line += course.id+" ";
@@ -149,7 +150,7 @@ public abstract class Resolver {
 
     public void printSolution() throws FileNotFoundException, UnsupportedEncodingException {
         for(Car car : cars) {
-            String line = car.id+" ";
+            String line = car.courses.size()+" ";
 
             for (Course course : car.courses) {
                 line += course.id+" ";
