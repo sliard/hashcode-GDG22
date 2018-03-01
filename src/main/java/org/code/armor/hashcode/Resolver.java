@@ -146,7 +146,25 @@ public abstract class Resolver {
     }
 
     public int rateSolution() {
-        return 0;
+
+        int totalScore = 0;
+        for(Car car : cars) {
+            int carStartStep = 0;
+            Position carPosition = new Position();
+            carPosition.x = 0;
+            carPosition.y = 0;
+            for (Course course : car.courses) {
+                carStartStep += carPosition.getDistance(course.startPos);
+                if(course.startStep > carStartStep) {
+                    totalScore += onTimeBonus;
+                    carStartStep = course.startStep;
+                }
+                carStartStep += course.getDistance();
+                totalScore += course.getDistance();;
+                carPosition = course.stopPos;
+            }
+        }
+        return totalScore;
     }
 
     public void writeSolution() throws FileNotFoundException, UnsupportedEncodingException {
