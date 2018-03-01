@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Resolver {
 
@@ -16,6 +18,8 @@ public class Resolver {
     public int nbStep;
 
     public List<Course> allCourses;
+    
+    public List<Car> cars;
 
     public Resolver(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -43,6 +47,8 @@ public class Resolver {
         grid.columns = Integer.getInteger(elems[1]);
 
         nbCar = Integer.getInteger(elems[2]);
+        cars = IntStream.of(nbCar).mapToObj(Car::new).collect(Collectors.toList());
+        
         nbRides = Integer.getInteger(elems[3]);
         onTimeBonus = Integer.getInteger(elems[4]);
         nbStep = Integer.getInteger(elems[6]);
@@ -58,9 +64,11 @@ public class Resolver {
 
         allCourses = new ArrayList<>();
 
+        int i = 0;
         while ((line = br.readLine()) != null) {
             Course c = new Course();
             String[] elems2 = line.split(" ");
+            c.id = i++;
             c.startPos.x = Integer.getInteger(elems2[0]);
             c.startPos.y = Integer.getInteger(elems2[1]);
             c.stopPos.x = Integer.getInteger(elems2[2]);
@@ -69,6 +77,7 @@ public class Resolver {
             c.stopStep = Integer.getInteger(elems2[5]);
             allCourses.add(c);
         }
+        br.close();
 
     }
 

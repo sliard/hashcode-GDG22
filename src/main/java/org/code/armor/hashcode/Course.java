@@ -2,6 +2,7 @@ package org.code.armor.hashcode;
 
 public class Course {
 
+	public int id;
 	public Position startPos;
 	public Position stopPos;
 	public int startStep;
