@@ -107,10 +107,15 @@ public class Resolver {
 
         for(Step step : steps) {
             for(Car car : cars) {
+                if(car.availableStep == step.id) {
+                    car.currentPosition = car.currentCourse.stopPos;
+                    car.currentCourse = null;
+                }
+
                 if(car.currentCourse == null) {
-                    //
-                } else if(car.availableStep == step.id) {
-                    // calcule score
+                    Course c = getCourse(car, step);
+                    car.currentCourse = c;
+                    car.availableStep = step.id + c.getDistance();
                 }
             }
         }
