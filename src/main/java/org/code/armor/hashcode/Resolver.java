@@ -11,7 +11,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public abstract class Resolver {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
     public String fileName;
 
@@ -29,7 +34,7 @@ public abstract class Resolver {
     public List<Step> steps;
 
     public Resolver() {
-
+    
     }
 
     public void readFile(String fileName) throws IOException {
@@ -88,19 +93,29 @@ public abstract class Resolver {
             c.stopPos.x = Integer.parseInt(elems2[3]);
             c.startStep = Integer.parseInt(elems2[4]);
             c.stopStep = Integer.parseInt(elems2[5]);
-            allCourses.add(c);
+            int end = c.stopStep - c.getDistance();
+            if (end < c.startStep)
+            	logger.warn("Unable to create step" + c.id);
+            else
+            	allCourses.add(c);
         }
         br.close();
 
         steps = IntStream.range(0, nbStep).mapToObj(Step::new).collect(Collectors.toList());
+        logger.info("Created steps");
         
        
         for (Course course : allCourses) {
 
+            logger.info("Created course" + course.id);
         	steps.get(course.startStep).activeCourses.add(course);
-        	IntStream.range(course.startStep, course.stopStep - course.getDistance())
+        	int end = Math.min(course.stopStep - course.getDistance(), 100);
+        	IntStream.range(course.startStep, end)
         		.forEach(j-> steps.get(j).activeCourses.add(course));
         };
+
+        logger.info("Created courses");
+        
 
     }
     
