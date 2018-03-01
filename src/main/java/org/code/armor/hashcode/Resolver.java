@@ -94,6 +94,13 @@ public class Resolver {
         };
 
     }
+    
+    public Course getCourse(Car car, Step step) {
+//    	for (Course course : step.activeCourses) {
+//    		if (car.currentPosition.g)
+//    	}
+    	return null;
+    }
 
 
     public void run() {
