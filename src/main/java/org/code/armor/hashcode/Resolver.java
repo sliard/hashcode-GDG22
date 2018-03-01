@@ -32,7 +32,7 @@ public abstract class Resolver {
 
     }
 
-    public Resolver(String fileName) throws IOException {
+    public void readFile(String fileName) throws IOException {
         this.fileName = fileName;
         InputStream is = Resolver.class.getResourceAsStream(fileName);
         BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
