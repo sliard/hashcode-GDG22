@@ -135,6 +135,7 @@ public abstract class Resolver {
                 if(car.currentCourse == null) {
                     Course c = getCourse(car, step);
                     if(c != null) {
+                        allCourses.remove(c);
                         c.took = true;
                         car.currentCourse = c;
                         car.availableStep = step.id + c.getDistance();
