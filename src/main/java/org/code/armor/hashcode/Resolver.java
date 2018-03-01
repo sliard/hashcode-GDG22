@@ -26,8 +26,6 @@ public class Resolver {
 
         InputStream is = Resolver.class.getResourceAsStream(fileName);
         BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-
-//        BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line;
 
         /**
