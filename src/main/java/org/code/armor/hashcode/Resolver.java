@@ -64,7 +64,7 @@ public abstract class Resolver {
         onTimeBonus = Integer.parseInt(elems[4]);
         nbStep = Integer.parseInt(elems[5]);
 
-        cars = IntStream.of(nbCar).mapToObj(Car::new).collect(Collectors.toList());
+        cars = IntStream.range(0, nbCar).mapToObj(Car::new).collect(Collectors.toList());
 
         /**
          * a – the row of the start intersection (0 ≤ a < R)
@@ -92,9 +92,11 @@ public abstract class Resolver {
         }
         br.close();
 
-        steps = IntStream.of(nbStep).mapToObj(Step::new).collect(Collectors.toList());
+        steps = IntStream.range(0, nbStep).mapToObj(Step::new).collect(Collectors.toList());
+        
        
         for (Course course : allCourses) {
+
         	steps.get(course.startStep).activeCourses.add(course);
         	IntStream.range(course.startStep, course.stopStep - course.getDistance())
         		.forEach(j-> steps.get(j).activeCourses.add(course));
