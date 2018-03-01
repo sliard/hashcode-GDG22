@@ -111,7 +111,7 @@ public abstract class Resolver {
 
         for(Step step : steps) {
             for(Car car : cars) {
-                if(car.availableStep == step.id) {
+                if(car.currentCourse != null && car.availableStep == step.id) {
                     car.currentPosition = car.currentCourse.stopPos;
                     car.currentCourse = null;
                 }
@@ -134,7 +134,7 @@ public abstract class Resolver {
 
     public void writeSolution() throws FileNotFoundException, UnsupportedEncodingException {
         String date = new SimpleDateFormat("hh-mm-ss").format(new Date());
-        PrintWriter writer = new PrintWriter(this.fileName+"-solve-"+date+".txt", "UTF-8");
+        PrintWriter writer = new PrintWriter("."+this.fileName+"-solve-"+date+".txt", "UTF-8");
 
         for(Car car : cars) {
             String line = car.id+" ";
