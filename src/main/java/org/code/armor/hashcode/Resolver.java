@@ -4,12 +4,16 @@ import sun.misc.ClassLoaderUtil;
 
 import java.io.*;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Resolver {
+public abstract class Resolver {
+
+    public String fileName;
 
     public Grid grid;
     public int nbCar;
@@ -26,7 +30,7 @@ public class Resolver {
 
 
     public Resolver(String fileName) throws IOException {
-
+        this.fileName = fileName;
         InputStream is = Resolver.class.getResourceAsStream(fileName);
         BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
         String line;
@@ -95,12 +99,7 @@ public class Resolver {
 
     }
     
-    public Course getCourse(Car car, Step step) {
-//    	for (Course course : step.activeCourses) {
-//    		if (car.currentPosition.g)
-//    	}
-    	return null;
-    }
+    public abstract Course getCourse(Car car, Step step);
 
 
     public void run() {
@@ -119,5 +118,24 @@ public class Resolver {
                 }
             }
         }
+    }
+
+    public int rateSolution() {
+        return 0;
+    }
+
+    public void writeSolution() throws FileNotFoundException, UnsupportedEncodingException {
+        String date = new SimpleDateFormat("hh-mm-ss").format(new Date());
+        PrintWriter writer = new PrintWriter(this.fileName+"-solve-"+date+".txt", "UTF-8");
+
+        for(Car car : cars) {
+            String line = car.id+" ";
+
+            for (Course course : car.courses) {
+                line += course.id+" ";
+            }
+            writer.println(line);
+        }
+        writer.close();
     }
 }
